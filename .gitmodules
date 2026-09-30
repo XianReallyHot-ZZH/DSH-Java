@@ -1,0 +1,3 @@
+[submodule "vendors/deepseek-harness-java"]
+	path = vendors/deepseek-harness-java
+	url = https://gitcode.net/KnowledgePlanet/deepseek-harness-java.git
