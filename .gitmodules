@@ -1,3 +1,12 @@
 [submodule "vendors/deepseek-harness-java"]
 	path = vendors/deepseek-harness-java
 	url = https://gitcode.net/KnowledgePlanet/deepseek-harness-java.git
+[submodule "vendors/dsh-java-desktop"]
+	path = vendors/dsh-java-desktop
+	url = https://gitcode.net/KnowledgePlanet/dsh-java-desktop.git
+[submodule "vendors/dsh-java-mysql"]
+	path = vendors/dsh-java-mysql
+	url = https://gitcode.net/KnowledgePlanet/dsh-java-mysql.git
+[submodule "vendors/dsh-java-plugin-skills"]
+	path = vendors/dsh-java-plugin-skills
+	url = https://github.com/fuzhengwei/dsh-java-plugin-skills.git
