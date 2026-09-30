@@ -217,5 +217,6 @@ flowchart LR
 ## 环境与准备
 
 - JDK 17+、Maven 3.6+；`vendors/` submodule 保持 `ff2d0a5`。
+- **上游增量悬置（2026-09-30 记）**：上游已有 `v0.1.8` 分支领先 `main`/ff2d0a5 4 个提交（f9a2537，2026-09-26，`git diff origin/main...origin/v0.1.8`：附件上传 + 工作区文件树三个新 trigger 控制器、控制台前端迭代、全 pom bump 0.1.8、start-standalone.sh）；既有 api/schema/SSE 契约面无变化。课程**不换基线**；走完 L26 后将该 delta 作为附加补丁课处理（届时建 L27 工单，见 `docs/tickets/L26-finalize.md` 末节）。
 - 真端点（L03 起）：`export LLM_BASE_URL=... LLM_API_KEY=... LLM_DEFAULT_MODEL=...`（建议 DeepSeek 官方 `https://api.deepseek.com/v1`，模型 `deepseek-chat`）；key 永不写入仓库。
 - H2 standalone（L09 起）零外部依赖；MySQL profile 可选。

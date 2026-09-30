@@ -26,3 +26,11 @@
 
 ## 教学点
 - 复刻的终点定义：行为对齐 + 交付形态对齐，而非逐行相同；收尾课同时是全课程的复盘索引。
+
+## 收尾后续（L26 完成后触发，2026-09-30 记）
+
+**任务：把 vendor `v0.1.8` − `main`(ff2d0a5) 的 delta 作为附加补丁课完成。**
+
+- 来源：`git -C vendors/deepseek-harness-java diff origin/main...origin/v0.1.8`（4 提交，止于 f9a2537，2026-09-26；submodule 指针保持 ff2d0a5 不动，避免破坏既有行号引用，delta 直接从 origin/v0.1.8 分支读）。
+- 增量内容：`AttachmentUploadController`（附件上传）、`WorkspaceFileQueryController` / `WorkspaceFileTreeQueryController`（工作区文件内容/树查询）三个新 REST 面；`WorkspaceRegistryService` 小改；`app.js`/`app.css`/`application.yml` 控制台迭代；`scripts/start-standalone.sh`；全 pom 版本 bump 0.1.8。既有 api/schema/SSE 契约面无变化。
+- 形式：建工单 `docs/tickets/L27-v0.1.8-delta.md`（按常课结构：精读/增量/搬运测试/DoD/教学文档）→ 按常课流程 `/mattpocock-skills:implement` 执行 → 对拍三个新控制器的 REST 契约（路由/DTO/信封）→ 打 tag `L27`。
