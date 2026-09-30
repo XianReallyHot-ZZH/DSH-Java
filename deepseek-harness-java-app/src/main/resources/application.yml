@@ -1,0 +1,19 @@
+server:
+  port: 8090
+
+logging:
+  level:
+    io.github.xianreallyhotzzh.dsh: info
+
+spring:
+  application:
+    name: deepseek-harness-java
+  # L01 起步时无配置文件（Spring 全默认 8080）；本块为 L02 配置中心增量。
+  # 与 vendor 的差异：datasource / sql.init / mybatis 随 L09 持久化核心补齐，
+  # management 探活端点随收尾课评估。
+  config:
+    import:
+      - optional:classpath:harness.yml
+      - optional:file:./harness.yml
+      - optional:classpath:harness-extensions.yml
+      - optional:file:./harness-extensions.yml

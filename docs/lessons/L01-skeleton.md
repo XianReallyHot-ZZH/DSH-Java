@@ -60,7 +60,7 @@ graph TD
 | types pom 去掉 scm/licenses/developers 与注释掉的 central 发布配置 | 复刻件不发布中央仓库 | 不补齐 |
 | app pom 去掉 sample-tools-plugin 依赖与 copy-plugin-jars 执行 | 插件工程未建 | L14 |
 | app pom 去掉 spring-boot-starter-actuator | 探活端点非骨架必需 | 收尾课评估 |
-| case pom 去掉 snakeyaml | harness.yml 解析属配置中心 | L02 |
+| case pom 去掉 snakeyaml | 勘误（L01 原注「harness.yml 解析属配置中心」归因有误，L02 更正）：vendor 的消费方是插件清单解析（PluginArtifactAnalyzerService 读 JAR 内 plugin.yaml） | L15 |
 | infrastructure pom 去掉 starter-jdbc / mybatis / mysql / h2 | 持久化属 L09 | L09 |
 
 保留的 vendor 原味：junit 版本钉子（api/domain 钉 5.8.2 + junit-bom，trigger/case/infrastructure/app 用 spring-boot-dependencies 管理的 5.10.2）、domain 的 spring-context/jackson `provided` 作用域、surefire 2.22.2。

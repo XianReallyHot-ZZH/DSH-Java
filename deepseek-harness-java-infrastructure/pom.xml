@@ -26,6 +26,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
+        <!-- L02 配置中心引入：@ConfigurationProperties / Binder / @EnableConfigurationProperties。
+             vendor 里 spring-boot 由 starter-jdbc 传递获得，复刻件 L09 前显式声明 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
