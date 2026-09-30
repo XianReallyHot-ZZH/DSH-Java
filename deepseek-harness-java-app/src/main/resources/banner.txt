@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_CYAN}
+    ____  ____      _   __   __
+   / __ \/ __ \    / | / /  / /
+  / / / / / / /   /  |/ /  / /
+ / /_/ / /_/ /   / /|  /  / /
+/_____/\____/   /_/ |_/  /_/
+${AnsiStyle.NORMAL}
+  DSH-Java Replica | Spring Boot ${spring-boot.version}
+  Web console: http://localhost:${server.port:8080}/

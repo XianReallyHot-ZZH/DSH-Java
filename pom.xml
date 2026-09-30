@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.xianreallyhotzzh</groupId>
+    <artifactId>deepseek-harness-java</artifactId>
+    <version>0.1.7</version>
+    <packaging>pom</packaging>
+
+    <name>deepseek-harness-java</name>
+    <description>DSH-Java：deepseek-harness-java 的逐课复刻件。与 vendor（vendors/deepseek-harness-java，基准 ff2d0a5）的差异逐课记录在 docs/lessons/。</description>
+
+    <modules>
+        <module>deepseek-harness-java-app</module>
+        <module>deepseek-harness-java-trigger</module>
+        <module>deepseek-harness-java-api</module>
+        <module>deepseek-harness-java-case</module>
+        <module>deepseek-harness-java-types</module>
+        <module>deepseek-harness-java-domain</module>
+        <module>deepseek-harness-java-infrastructure</module>
+        <!-- plugins/ 目录已占位（见 plugins/README.md）；sample-tools-plugin（L14）、
+             deepseek-harness-plugin-archetype（L16）随课加入 <modules> -->
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>3.3.2</spring-boot.version>
+        <!-- 与 vendor 的差异：vendor 默认 skipTests=true，跑测试需 -DskipTests=false；
+             复刻件默认始终执行测试——测试即课程本体 -->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <!-- 版本管理插件：统一升级/回退全工程（含子模块）版本号 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.16.2</version>
+                <configuration>
+                    <!-- 各模块版本与父工程保持一致 -->
+                    <processAllModules>true</processAllModules>
+                    <!-- 不产生 pom.xml.versionsBackup 备份文件 -->
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

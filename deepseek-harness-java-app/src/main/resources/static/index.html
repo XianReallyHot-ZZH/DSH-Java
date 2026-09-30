@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSH-Java</title>
+    <style>
+        body { font-family: -apple-system, "PingFang SC", sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1rem; color: #1a1a1a; }
+        h1 { font-size: 1.5rem; }
+        code { background: #f4f4f4; padding: .1rem .4rem; border-radius: .25rem; }
+        ul { line-height: 1.8; }
+        .muted { color: #888; }
+    </style>
+</head>
+<body>
+    <h1>DSH-Java 骨架已启动（L01）</h1>
+    <p>七模块 Maven 骨架与最小启动就位，依赖方向由 ArchUnit 守护：</p>
+    <ul>
+        <li><code>app</code> — Spring Boot 启动器（扫描入口，非装配中心）</li>
+        <li><code>trigger</code> — HTTP 控制器 / api 实现方 / SSE 流服务</li>
+        <li><code>api</code> — 对外契约（I*Api / DTO / Response 信封）</li>
+        <li><code>case</code> — 用例编排（策略树）</li>
+        <li><code>domain</code> — 领域核心（纯 Java，依赖圆心）</li>
+        <li><code>types</code> — 插件开发契约包</li>
+        <li><code>infrastructure</code> — 端口适配 + DAO + 组合根</li>
+    </ul>
+    <p class="muted">对话控制台随 L05 上线；本页为占位页。</p>
+</body>
+</html>

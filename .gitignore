@@ -1,1 +1,5 @@
 /.idea/
+target/
+data/
+# 构建产物 jar（L14 起 plugins/ 下的插件 JAR 同样不入场，JAR 由源码构建）
+*.jar
