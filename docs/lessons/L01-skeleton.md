@@ -12,26 +12,9 @@
 
 对照 [报告 01 §2.3](../research/01-module-dependencies-and-request-lifecycle.md)。L01 与报告图的两处差异：外部插件工程（EXT 子图）随 L14 进 `plugins/`；trigger→infrastructure 的 pom 依赖边 **L01 即存在**（vendor trigger pom 原样搬运），但 L01 无任何类级使用——vendor 中真正用到这条边的只有 L23/L24 数字人/协作控制器（报告画作虚线例外的正是这层含义），届时在 lesson 中重提。
 
-```mermaid
-graph TD
-    APP["app<br/>Spring Boot 启动器<br/>banner / static 资源"]
-    TRIGGER["trigger<br/>Controller + Api 适配器（本课为空）"]
-    CASE["case<br/>用例编排·策略树（空）"]
-    API["api<br/>I*Api 契约 + DTO + Response（本课只有 Response）"]
-    INFRA["infrastructure<br/>端口适配 + DAO + 组合根（空）"]
-    DOMAIN["domain<br/>领域核心（空）"]
-    TYPES["types<br/>插件 SPI 契约包（空）"]
+[![七模块依赖图（L01 视角）](assets/l01-modules.svg)](assets/l01-modules.html)
 
-    APP --> TRIGGER
-    APP --> INFRA
-    TRIGGER --> API
-    TRIGGER --> CASE
-    TRIGGER --> INFRA
-    CASE --> API
-    CASE --> DOMAIN
-    INFRA --> DOMAIN
-    DOMAIN --> TYPES
-```
+> 🔍 交互版 [assets/l01-modules.html](assets/l01-modules.html)：点击节点聚焦依赖、追踪关系边、切换明暗主题与「依赖主干 / 双契约根」章节视图（GitHub 网页端仅显示源码，请本地克隆中打开）。
 
 依赖方向整体**离心式**：domain（+types）处于圆心零反向依赖；api 是独立契约片；case/infrastructure 只踩 domain（case 另持有 api 做DTO 出参）；trigger 把三者粘起来；app 只做启动与装配扫描。
 

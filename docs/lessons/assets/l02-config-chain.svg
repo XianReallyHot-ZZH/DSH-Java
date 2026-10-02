@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="380" viewBox="0 0 1180 380" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">L02 配置加载链</title>
+        <desc id="archify-diagram-description">由 Archify 生成的架构图。</desc>
+        <!-- Definitions -->
+        <defs>
+    <style>:root{--bg:#f8fafc;--grid:#e2e8f0;--text:#0f172a;--text-muted:#64748b;--text-dim:#94a3b8;--text-faint:#64748b;--panel:#ffffff;--panel-border:#e2e8f0;--lane-fill:rgba(248, 250, 252, 0.65);--lane-stroke:#cbd5e1;--arrow:#94a3b8;--arrow-emphasis:#059669;--mask:#ffffff;--frontend-fill:rgba(34, 211, 238, 0.15);--frontend-stroke:#0891b2;--backend-fill:rgba(52, 211, 153, 0.18);--backend-stroke:#059669;--database-fill:rgba(167, 139, 250, 0.2);--database-stroke:#7c3aed;--cloud-fill:rgba(251, 191, 36, 0.18);--cloud-stroke:#d97706;--security-fill:rgba(251, 113, 133, 0.15);--security-stroke:#e11d48;--messagebus-fill:rgba(251, 146, 60, 0.15);--messagebus-stroke:#ea580c;--external-fill:rgba(148, 163, 184, 0.18);--external-stroke:#64748b;--toolbar-bg:rgba(255, 255, 255, 0.92);--toolbar-border:#cbd5e1;--toolbar-text:#334155;--toolbar-hover:#ffffff;--toolbar-menu-bg:#ffffff;}.c-grid { stroke: var(--grid); fill: none; }
+.c-mask { fill: var(--mask); stroke: none; }
+.c-backend { fill: var(--backend-fill);    stroke: var(--backend-stroke); }
+.c-external { fill: var(--external-fill);   stroke: var(--external-stroke); }
+.t-primary { fill: var(--text); }
+.t-muted { fill: var(--text-muted); }
+.t-backend { fill: var(--backend-stroke); }
+svg .semantic-sigil { fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.76;
+      pointer-events: none; }
+svg .semantic-sigil > * { vector-effect: non-scaling-stroke; }
+svg .s-backend { color: var(--backend-stroke); }
+svg .s-external { color: var(--external-stroke); }
+.a-default { stroke: var(--arrow); fill: none; }
+.a-emphasis { stroke: var(--arrow-emphasis); fill: none; }
+.m-default { fill: var(--arrow); }
+.m-emphasis { fill: var(--arrow-emphasis); }
+.m-security { fill: var(--security-stroke); }
+.m-dashed { fill: var(--database-stroke); }
+svg[data-preset="editorial"] .c-grid { stroke-dasharray: 1 4;
+      opacity: 0.48; }
+svg[data-preset="blueprint"] .c-grid { stroke-dasharray: 1 3;
+      opacity: 0.78; }</style>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="var(--bg)" />
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <path data-edge-from="appyml" data-edge-to="env" data-edge-label="导入并合并" data-edge-key="0" data-edge-id="appyml-env" data-composition-points="150,96;150,127;725,127;725,158" d="M 150 96 L 150 119 Q 150 127 158 127 L 717 127 Q 725 127 725 135 L 725 158" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="hycl" data-edge-to="env" data-edge-label="先导入" data-edge-key="1" data-edge-id="hycl-env" data-composition-points="510,66;725,66;725,158" d="M 510 66 L 717 66 Q 725 66 725 74 L 725 158" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="hyf" data-edge-to="env" data-edge-label="后导入者胜" data-edge-key="2" data-edge-id="hyf-env" data-composition-points="510,190;534,190;534,207;596,207;596,191;620,191" d="M 510 190 L 526 190 Q 534 190 534 198 L 534 199 Q 534 207 542 207 L 588 207 Q 596 207 596 199 L 596 199 Q 596 191 604 191 L 620 191" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="exty" data-edge-to="env" data-edge-label="外部扩展" data-edge-key="3" data-edge-id="exty-env" data-composition-points="150,220;150,244;596,244;596,191;620,191" d="M 150 220 L 150 236 Q 150 244 158 244 L 588 244 Q 596 244 596 236 L 596 199 Q 596 191 604 191 L 620 191" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="sys" data-edge-to="env" data-edge-label="压过全部文件源" data-edge-key="4" data-edge-id="sys-env" data-composition-points="250,314;725,314;725,224" d="M 250 314 L 717 314 Q 725 314 725 306 L 725 224" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="env" data-edge-to="read" data-edge-label="单值" data-edge-key="5" data-edge-id="env-read" data-composition-points="830,184;880,184;880,66;930,66" d="M 830 184 L 872 184 Q 880 184 880 176 L 880 74 Q 880 66 888 66 L 930 66" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="env" data-edge-to="cp" data-edge-label="强类型" data-edge-key="6" data-edge-id="env-cp" data-composition-points="830,191;854,191;854,207;906,207;906,190;930,190" d="M 830 191 L 846 191 Q 854 191 854 199 L 854 199 Q 854 207 862 207 L 898 207 Q 906 207 906 199 L 906 198 Q 906 190 914 190 L 930 190" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="env" data-edge-to="bnd" data-edge-label="弱类型整树" data-edge-key="7" data-edge-id="env-bnd" data-composition-points="830,198;880,198;880,314;930,314" d="M 830 198 L 872 198 Q 880 198 880 206 L 880 306 Q 880 314 888 314 L 930 314" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Components -->
+        <g id="node-appyml" data-node-id="appyml" data-node-label="application.yml" tabindex="0" role="button" aria-label="聚焦application.yml，端口 8090 · 四条 optional 导入, 架构组件" aria-pressed="false" data-node-kind="external" data-node-sublabel="端口 8090 · 四条 optional 导入" data-node-context="架构组件">
+          <title>application.yml · 端口 8090 · 四条 optional 导入 · 架构组件</title>
+          <rect x="50" y="36" width="200" height="60" rx="6" class="c-mask"/>
+          <rect x="50" y="36" width="200" height="60" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(56 42) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="150" y="64" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">application.yml</text>
+        <text data-detail="context" x="150" y="80" class="t-muted" font-size="9" text-anchor="middle">端口 8090 · 四条 optional 导入</text>
+        </g>
+
+        <g id="node-hycl" data-node-id="hycl" data-node-label="classpath:harness.yml" tabindex="0" role="button" aria-label="聚焦classpath:harness.yml，随 jar 分发 · 先导入, 架构组件" aria-pressed="false" data-node-kind="external" data-node-sublabel="随 jar 分发 · 先导入" data-node-context="架构组件">
+          <title>classpath:harness.yml · 随 jar 分发 · 先导入 · 架构组件</title>
+          <rect x="310" y="36" width="200" height="60" rx="6" class="c-mask"/>
+          <rect x="310" y="36" width="200" height="60" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(316 42) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="410" y="64" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">classpath:harness.yml</text>
+        <text data-detail="context" x="410" y="80" class="t-muted" font-size="9" text-anchor="middle">随 jar 分发 · 先导入</text>
+        </g>
+
+        <g id="node-hyf" data-node-id="hyf" data-node-label="file:./harness.yml" tabindex="0" role="button" aria-label="聚焦file:./harness.yml，部署现场覆盖, 架构组件" aria-pressed="false" data-node-kind="external" data-node-sublabel="部署现场覆盖" data-node-context="架构组件">
+          <title>file:./harness.yml · 部署现场覆盖 · 架构组件</title>
+          <rect x="310" y="160" width="200" height="60" rx="6" class="c-mask"/>
+          <rect x="310" y="160" width="200" height="60" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(316 166) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="410" y="188" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">file:./harness.yml</text>
+        <text data-detail="context" x="410" y="204" class="t-muted" font-size="9" text-anchor="middle">部署现场覆盖</text>
+        </g>
+
+        <g id="node-exty" data-node-id="exty" data-node-label="harness-extensions.yml" tabindex="0" role="button" aria-label="聚焦harness-extensions.yml，可选外部覆盖 · 不入库, 架构组件" aria-pressed="false" data-node-kind="external" data-node-sublabel="可选外部覆盖 · 不入库" data-node-context="架构组件">
+          <title>harness-extensions.yml · 可选外部覆盖 · 不入库 · 架构组件</title>
+          <rect x="50" y="160" width="200" height="60" rx="6" class="c-mask"/>
+          <rect x="50" y="160" width="200" height="60" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(56 166) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="150" y="188" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">harness-extensions.yml</text>
+        <text data-detail="context" x="150" y="204" class="t-muted" font-size="9" text-anchor="middle">可选外部覆盖 · 不入库</text>
+        </g>
+
+        <g id="node-sys" data-node-id="sys" data-node-label="系统属性" tabindex="0" role="button" aria-label="聚焦系统属性，环境变量 / JVM / 命令行, 架构组件" aria-pressed="false" data-node-kind="external" data-node-sublabel="环境变量 / JVM / 命令行" data-node-context="架构组件">
+          <title>系统属性 · 环境变量 / JVM / 命令行 · 架构组件</title>
+          <rect x="50" y="284" width="200" height="60" rx="6" class="c-mask"/>
+          <rect x="50" y="284" width="200" height="60" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(56 290) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="150" y="312" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">系统属性</text>
+        <text data-detail="context" x="150" y="328" class="t-muted" font-size="9" text-anchor="middle">环境变量 / JVM / 命令行</text>
+        </g>
+
+        <g id="node-env" data-node-id="env" data-node-label="Spring Environment" tabindex="0" role="button" aria-label="聚焦Spring Environment，合并属性源 · ${} 占位符在此解析, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="合并属性源 · ${} 占位符在此解析" data-node-tag="后导入者胜" data-node-context="架构组件">
+          <title>Spring Environment · 合并属性源 · ${} 占位符在此解析 · 架构组件 · 后导入者胜</title>
+          <rect x="620" y="158" width="210" height="66" rx="6" class="c-mask"/>
+          <rect x="620" y="158" width="210" height="66" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(626 164) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="725" y="189" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Spring Environment</text>
+        <text data-detail="context" x="725" y="205" class="t-muted" font-size="9" text-anchor="middle">合并属性源 · ${} 占位符在此解析</text>
+        <text data-detail="fine" x="725" y="216" class="t-backend" font-size="7" text-anchor="middle">后导入者胜</text>
+        </g>
+
+        <g id="node-read" data-node-id="read" data-node-label="@Value 注入" tabindex="0" role="button" aria-label="聚焦@Value 注入，拦截器读 api-keys · 逗号串, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="拦截器读 api-keys · 逗号串" data-node-context="架构组件">
+          <title>@Value 注入 · 拦截器读 api-keys · 逗号串 · 架构组件</title>
+          <rect x="930" y="36" width="210" height="60" rx="6" class="c-mask"/>
+          <rect x="930" y="36" width="210" height="60" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(936 42) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1035" y="64" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">@Value 注入</text>
+        <text data-detail="context" x="1035" y="80" class="t-muted" font-size="9" text-anchor="middle">拦截器读 api-keys · 逗号串</text>
+        </g>
+
+        <g id="node-cp" data-node-id="cp" data-node-label="@ConfigurationProperties" tabindex="0" role="button" aria-label="聚焦@ConfigurationProperties，HarnessExtensionsProperties · 强类型, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="HarnessExtensionsProperties · 强类型" data-node-context="架构组件">
+          <title>@ConfigurationProperties · HarnessExtensionsProperties · 强类型 · 架构组件</title>
+          <rect x="930" y="160" width="210" height="60" rx="6" class="c-mask"/>
+          <rect x="930" y="160" width="210" height="60" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(936 166) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1035" y="188" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">@ConfigurationProperties</text>
+        <text data-detail="context" x="1035" y="204" class="t-muted" font-size="9" text-anchor="middle">HarnessExtensionsProperties · 强类型</text>
+        </g>
+
+        <g id="node-bnd" data-node-id="bnd" data-node-label="Binder 直绑" tabindex="0" role="button" aria-label="聚焦Binder 直绑，校验器 · 脱敏投影 · 弱类型整树, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="校验器 · 脱敏投影 · 弱类型整树" data-node-context="架构组件">
+          <title>Binder 直绑 · 校验器 · 脱敏投影 · 弱类型整树 · 架构组件</title>
+          <rect x="930" y="284" width="210" height="60" rx="6" class="c-mask"/>
+          <rect x="930" y="284" width="210" height="60" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(936 290) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1035" y="312" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Binder 直绑</text>
+        <text data-detail="context" x="1035" y="328" class="t-muted" font-size="9" text-anchor="middle">校验器 · 脱敏投影 · 弱类型整树</text>
+        </g>
+
+        <!-- Connection labels -->
+        <g data-detail="context" data-edge-from="appyml" data-edge-to="env" data-edge-label="导入并合并" data-edge-key="0" data-edge-id="appyml-env">
+          <rect x="371" y="117" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="400" y="127" class="t-muted" font-size="8" text-anchor="middle">导入并合并</text>
+        </g>
+        <g data-detail="context" data-edge-from="hycl" data-edge-to="env" data-edge-label="先导入" data-edge-key="1" data-edge-id="hycl-env">
+          <rect x="620.6" y="56" width="38.8" height="14" rx="3" class="c-mask"/>
+          <text x="640" y="66" class="t-muted" font-size="8" text-anchor="middle">先导入</text>
+        </g>
+        <g data-detail="context" data-edge-from="hyf" data-edge-to="env" data-edge-label="后导入者胜" data-edge-key="2" data-edge-id="hyf-env">
+          <rect x="536" y="162" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="565" y="172" class="t-backend" font-size="8" text-anchor="middle">后导入者胜</text>
+        </g>
+        <g data-detail="context" data-edge-from="exty" data-edge-to="env" data-edge-label="外部扩展" data-edge-key="3" data-edge-id="exty-env">
+          <rect x="325.8" y="242" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="350" y="252" class="t-muted" font-size="8" text-anchor="middle">外部扩展</text>
+        </g>
+        <g data-detail="context" data-edge-from="sys" data-edge-to="env" data-edge-label="压过全部文件源" data-edge-key="4" data-edge-id="sys-env">
+          <rect x="361.4" y="304" width="77.2" height="14" rx="3" class="c-mask"/>
+          <text x="400" y="314" class="t-muted" font-size="8" text-anchor="middle">压过全部文件源</text>
+        </g>
+        <g data-detail="context" data-edge-from="env" data-edge-to="read" data-edge-label="单值" data-edge-key="5" data-edge-id="env-read">
+          <rect x="865" y="105" width="30" height="14" rx="3" class="c-mask"/>
+          <text x="880" y="115" class="t-muted" font-size="8" text-anchor="middle">单值</text>
+        </g>
+        <g data-detail="context" data-edge-from="env" data-edge-to="cp" data-edge-label="强类型" data-edge-key="6" data-edge-id="env-cp">
+          <rect x="886.6" y="181" width="38.8" height="14" rx="3" class="c-mask"/>
+          <text x="906" y="191" class="t-muted" font-size="8" text-anchor="middle">强类型</text>
+        </g>
+        <g data-detail="context" data-edge-from="env" data-edge-to="bnd" data-edge-label="弱类型整树" data-edge-key="7" data-edge-id="env-bnd">
+          <rect x="851" y="236" width="58" height="14" rx="3" class="c-mask"/>
+          <text x="880" y="246" class="t-muted" font-size="8" text-anchor="middle">弱类型整树</text>
+        </g>
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+
+
+        <!-- Legend -->
+
+      </svg>

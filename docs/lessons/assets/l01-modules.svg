@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="440" viewBox="0 0 1240 440" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">DSH-Java 七模块依赖（L01 视角）</title>
+        <desc id="archify-diagram-description">由 Archify 生成的架构图。</desc>
+        <!-- Definitions -->
+        <defs>
+    <style>:root{--bg:#f8fafc;--grid:#e2e8f0;--text:#0f172a;--text-muted:#64748b;--text-dim:#94a3b8;--text-faint:#64748b;--panel:#ffffff;--panel-border:#e2e8f0;--lane-fill:rgba(248, 250, 252, 0.65);--lane-stroke:#cbd5e1;--arrow:#94a3b8;--arrow-emphasis:#059669;--mask:#ffffff;--frontend-fill:rgba(34, 211, 238, 0.15);--frontend-stroke:#0891b2;--backend-fill:rgba(52, 211, 153, 0.18);--backend-stroke:#059669;--database-fill:rgba(167, 139, 250, 0.2);--database-stroke:#7c3aed;--cloud-fill:rgba(251, 191, 36, 0.18);--cloud-stroke:#d97706;--security-fill:rgba(251, 113, 133, 0.15);--security-stroke:#e11d48;--messagebus-fill:rgba(251, 146, 60, 0.15);--messagebus-stroke:#ea580c;--external-fill:rgba(148, 163, 184, 0.18);--external-stroke:#64748b;--toolbar-bg:rgba(255, 255, 255, 0.92);--toolbar-border:#cbd5e1;--toolbar-text:#334155;--toolbar-hover:#ffffff;--toolbar-menu-bg:#ffffff;}.c-grid { stroke: var(--grid); fill: none; }
+.c-mask { fill: var(--mask); stroke: none; }
+.c-backend { fill: var(--backend-fill);    stroke: var(--backend-stroke); }
+.t-primary { fill: var(--text); }
+.t-muted { fill: var(--text-muted); }
+.t-backend { fill: var(--backend-stroke); }
+.t-cloud { fill: var(--cloud-stroke); }
+.t-messagebus { fill: var(--messagebus-stroke); }
+svg .semantic-sigil { fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.76;
+      pointer-events: none; }
+svg .semantic-sigil > * { vector-effect: non-scaling-stroke; }
+svg .s-backend { color: var(--backend-stroke); }
+.a-default { stroke: var(--arrow); fill: none; }
+.a-dashed { stroke: var(--database-stroke); fill: none; stroke-dasharray: 4,4; }
+.m-default { fill: var(--arrow); }
+.m-emphasis { fill: var(--arrow-emphasis); }
+.m-security { fill: var(--security-stroke); }
+.m-dashed { fill: var(--database-stroke); }
+svg[data-preset="editorial"] .c-grid { stroke-dasharray: 1 4;
+      opacity: 0.48; }
+svg[data-preset="editorial"] .c-region { fill: color-mix(in srgb, var(--cloud-fill) 48%, transparent);
+      stroke-dasharray: 9 4; }
+svg[data-preset="blueprint"] .c-grid { stroke-dasharray: 1 3;
+      opacity: 0.78; }
+svg[data-preset="blueprint"] .c-region { fill: color-mix(in srgb, var(--cloud-fill) 58%, transparent);
+      stroke-dasharray: 12 4 2 4; }
+.c-region { fill: rgba(251, 191, 36, 0.05); stroke: var(--cloud-stroke); stroke-dasharray: 8,4; }</style>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="var(--bg)" />
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Boundaries (behind everything) -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="0" data-composition-frame-label="依赖圆心（同包段 · 不同 jar）" x="704" y="182" width="456" height="102" rx="12" class="c-region" stroke-width="1"/>
+
+        <!-- Connection paths (before components for correct z-order) -->
+        <path data-edge-from="app" data-edge-to="trigger" data-edge-key="0" data-edge-id="app-trigger" data-composition-points="206,235;262,235" d="M 206 235 L 262 235" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="trigger" data-edge-to="case" data-edge-key="1" data-edge-id="trigger-case" data-composition-points="442,235;494,235" d="M 442 235 L 494 235" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="case" data-edge-to="domain" data-edge-key="2" data-edge-id="case-domain" data-composition-points="664,235;726,235" d="M 664 235 L 726 235" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="domain" data-edge-to="types" data-edge-key="3" data-edge-id="domain-types" data-composition-points="896,235;958,235" d="M 896 235 L 958 235" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="trigger" data-edge-to="api" data-edge-key="4" data-edge-id="trigger-api" data-composition-points="352,206;352,98" d="M 352 206 L 352 98" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="case" data-edge-to="api" data-edge-key="5" data-edge-id="case-api" data-composition-points="579,206;579,182;466,182;466,69;442,69" d="M 579 206 L 579 190 Q 579 182 571 182 L 474 182 Q 466 182 466 174 L 466 77 Q 466 69 458 69 L 442 69" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="trigger" data-edge-to="infra" data-edge-label="pom 边 · L01 无类级使用" data-edge-key="6" data-edge-id="trigger-infra" data-composition-points="352,264;352,288;702,288;702,388;726,388" d="M 352 264 L 352 280 Q 352 288 360 288 L 694 288 Q 702 288 702 296 L 702 380 Q 702 388 710 388 L 726 388" class="a-dashed" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="app" data-edge-to="infra" data-edge-key="7" data-edge-id="app-infra" data-composition-points="121,264;121,288;702,288;702,374;726,374" d="M 121 264 L 121 280 Q 121 288 129 288 L 694 288 Q 702 288 702 296 L 702 366 Q 702 374 710 374 L 726 374" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="infra" data-edge-to="domain" data-edge-key="8" data-edge-id="infra-domain" data-composition-points="826,352;826,328;842,328;842,288;811,288;811,264" d="M 826 352 L 826 336 Q 826 328 834 328 L 834 328 Q 842 328 842 320 L 842 296 Q 842 288 834 288 L 819 288 Q 811 288 811 280 L 811 264" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Components -->
+        <g id="node-app" data-node-id="app" data-node-label="app" tabindex="0" role="button" aria-label="聚焦app，启动器 · 扫描入口, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="启动器 · 扫描入口" data-node-tag="非装配中心" data-node-context="架构组件">
+          <title>app · 启动器 · 扫描入口 · 架构组件 · 非装配中心</title>
+          <rect x="36" y="206" width="170" height="58" rx="6" class="c-mask"/>
+          <rect x="36" y="206" width="170" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(42 212) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="121" y="233" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">app</text>
+        <text data-detail="context" x="121" y="249" class="t-muted" font-size="9" text-anchor="middle">启动器 · 扫描入口</text>
+        <text data-detail="fine" x="121" y="256" class="t-backend" font-size="7" text-anchor="middle">非装配中心</text>
+        </g>
+
+        <g id="node-trigger" data-node-id="trigger" data-node-label="trigger" tabindex="0" role="button" aria-label="聚焦trigger，HTTP 控制器 · SSE, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="HTTP 控制器 · SSE" data-node-context="架构组件">
+          <title>trigger · HTTP 控制器 · SSE · 架构组件</title>
+          <rect x="262" y="206" width="180" height="58" rx="6" class="c-mask"/>
+          <rect x="262" y="206" width="180" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(268 212) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="352" y="233" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">trigger</text>
+        <text data-detail="context" x="352" y="249" class="t-muted" font-size="9" text-anchor="middle">HTTP 控制器 · SSE</text>
+        </g>
+
+        <g id="node-api" data-node-id="api" data-node-label="api" tabindex="0" role="button" aria-label="聚焦api，I*Api + DTO + Response, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="I*Api + DTO + Response" data-node-tag="零内部依赖" data-node-context="架构组件">
+          <title>api · I*Api + DTO + Response · 架构组件 · 零内部依赖</title>
+          <rect x="262" y="40" width="180" height="58" rx="6" class="c-mask"/>
+          <rect x="262" y="40" width="180" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(268 46) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="352" y="67" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">api</text>
+        <text data-detail="context" x="352" y="83" class="t-muted" font-size="9" text-anchor="middle">I*Api + DTO + Response</text>
+        <text data-detail="fine" x="352" y="90" class="t-backend" font-size="7" text-anchor="middle">零内部依赖</text>
+        </g>
+
+        <g id="node-case" data-node-id="case" data-node-label="case" tabindex="0" role="button" aria-label="聚焦case，用例编排 · 策略树, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="用例编排 · 策略树" data-node-context="架构组件">
+          <title>case · 用例编排 · 策略树 · 架构组件</title>
+          <rect x="494" y="206" width="170" height="58" rx="6" class="c-mask"/>
+          <rect x="494" y="206" width="170" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(500 212) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="579" y="233" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">case</text>
+        <text data-detail="context" x="579" y="249" class="t-muted" font-size="9" text-anchor="middle">用例编排 · 策略树</text>
+        </g>
+
+        <g id="node-domain" data-node-id="domain" data-node-label="domain" tabindex="0" role="button" aria-label="聚焦domain，领域核心 · 纯 Java, 依赖圆心（同包段 · 不同 jar）" aria-pressed="false" data-node-kind="backend" data-node-sublabel="领域核心 · 纯 Java" data-node-context="依赖圆心（同包段 · 不同 jar）">
+          <title>domain · 领域核心 · 纯 Java · 依赖圆心（同包段 · 不同 jar）</title>
+          <rect x="726" y="206" width="170" height="58" rx="6" class="c-mask"/>
+          <rect x="726" y="206" width="170" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(732 212) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="811" y="233" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">domain</text>
+        <text data-detail="context" x="811" y="249" class="t-muted" font-size="9" text-anchor="middle">领域核心 · 纯 Java</text>
+        </g>
+
+        <g id="node-infra" data-node-id="infra" data-node-label="infrastructure" tabindex="0" role="button" aria-label="聚焦infrastructure，端口适配 + DAO + 组合根, 架构组件" aria-pressed="false" data-node-kind="backend" data-node-sublabel="端口适配 + DAO + 组合根" data-node-context="架构组件">
+          <title>infrastructure · 端口适配 + DAO + 组合根 · 架构组件</title>
+          <rect x="726" y="352" width="200" height="58" rx="6" class="c-mask"/>
+          <rect x="726" y="352" width="200" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(732 358) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="826" y="379" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">infrastructure</text>
+        <text data-detail="context" x="826" y="395" class="t-muted" font-size="9" text-anchor="middle">端口适配 + DAO + 组合根</text>
+        </g>
+
+        <g id="node-types" data-node-id="types" data-node-label="types" tabindex="0" role="button" aria-label="聚焦types，插件 SPI 契约包, 依赖圆心（同包段 · 不同 jar）" aria-pressed="false" data-node-kind="backend" data-node-sublabel="插件 SPI 契约包" data-node-context="依赖圆心（同包段 · 不同 jar）">
+          <title>types · 插件 SPI 契约包 · 依赖圆心（同包段 · 不同 jar）</title>
+          <rect x="958" y="206" width="180" height="58" rx="6" class="c-mask"/>
+          <rect x="958" y="206" width="180" height="58" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(964 212) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1048" y="233" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">types</text>
+        <text data-detail="context" x="1048" y="249" class="t-muted" font-size="9" text-anchor="middle">插件 SPI 契约包</text>
+        </g>
+
+        <!-- Connection labels -->
+
+
+
+
+
+
+        <g data-detail="context" data-edge-from="trigger" data-edge-to="infra" data-edge-label="pom 边 · L01 无类级使用" data-edge-key="6" data-edge-id="trigger-infra">
+          <rect x="466.8" y="268" width="120.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="527" y="278" class="t-messagebus" font-size="8" text-anchor="middle">pom 边 · L01 无类级使用</text>
+        </g>
+
+
+
+        <!-- Boundary labels (foreground masks keep routes out of titles) -->
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="0" data-composition-frame-kind="region" data-composition-frame-label="依赖圆心（同包段 · 不同 jar）">
+          <rect data-graph-role="structural-frame-label-mask" x="708" y="186" width="166.6" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="712" y="199" class="t-cloud" font-size="9" font-weight="600">依赖圆心（同包段 · 不同 jar）</text>
+        </g>
+
+        <!-- Legend -->
+
+      </svg>

@@ -15,23 +15,9 @@
 1. **属性源优先级**（谁覆盖谁）：jar 内配置文件（最低）→ jar 旁/工作目录外部文件 → OS 环境变量 → JVM 属性 → 命令行参数（最高）。
 2. **占位符兜底链**（单个值内部的回退）：`${LLM_API_KEY:${DEEPSEEK_API_KEY:}}` = 环境变量 `LLM_API_KEY` 没有则退 `DEEPSEEK_API_KEY`，再没有则空串。`spring.config.import` 列表内**后导入者胜**——`file:./harness.yml`（部署覆盖）压过 `classpath:harness.yml`（内置默认）。
 
-```mermaid
-graph TD
-    APPYML["application.yml<br/>端口 8090 / 日志 / 应用名 / config.import"]
-    IMP["spring.config.import<br/>optional:classpath:harness.yml<br/>optional:file:./harness.yml<br/>optional:classpath|file:harness-extensions.yml"]
-    HYCL["classpath:harness.yml<br/>统一配置模型（随 jar 分发的默认）"]
-    HYF["file:./harness.yml<br/>部署目录现场覆盖（后导入者胜）"]
-    EXT["harness-extensions.yml<br/>可选外部扩展覆盖（不入库）"]
-    SYS["OS 环境变量 / JVM 属性 / 命令行<br/>LLM_API_KEY 等（属性源优先级更高）"]
-    ENV["Spring Environment<br/>合并属性源，${} 占位符在此解析"]
+[![配置加载链](assets/l02-config-chain.svg)](assets/l02-config-chain.html)
 
-    APPYML --> IMP --> HYCL & HYF & EXT
-    HYCL & HYF & EXT & SYS --> ENV
-
-    ENV --> READ["@Value 注入<br/>trigger 拦截器读 api-keys<br/>（逗号串语义）"]
-    ENV --> CP["@ConfigurationProperties 绑定<br/>HarnessExtensionsProperties<br/>（强类型，L18/L19 消费）"]
-    ENV --> BND["Binder 直接绑 Map / List<br/>校验器 & effective 脱敏投影<br/>（弱类型整树）"]
-```
+> 🔍 交互版 [assets/l02-config-chain.html](assets/l02-config-chain.html)：点击来源/读取节点聚焦数据流、追踪汇入 Spring Environment 的每条边（GitHub 网页端仅显示源码，请本地克隆中打开）。
 
 同一份配置三种读法并存：`@Value`（单值）、`@ConfigurationProperties`（强类型对象）、`Binder`（整树弱类型）——vendor 三者都用，各有其位。
 
@@ -39,18 +25,9 @@ graph TD
 
 判定顺序即安全语义：预检与静态资源先于钥匙校验，空钥匙放行先于凭据检查。
 
-```mermaid
-flowchart TD
-    REQ["HTTP 请求 /**"] --> OPT{"OPTIONS？"}
-    OPT -- 是 --> P1["放行：CORS 预检不带自定义凭据<br/>（浏览器规范如此）"]
-    OPT -- 否 --> ST{"公开白名单？<br/>/ index.html app.js app.css lib/<br/>favicon.ico actuator .well-known/"}
-    ST -- 是 --> P2["放行：静态资源与 A2A Agent Card 发现"]
-    ST -- 否 --> EMPTY{"harness.auth.api-keys 为空？"}
-    EMPTY -- 是 --> P3["放行：本地开发模式<br/>（空 keys 即产品默认形态）"]
-    EMPTY -- 否 --> KEY{"X-API-Key 或<br/>Authorization: Bearer <token>"}
-    KEY -- "命中任一配置钥匙（逗号分隔，两侧 trim）" --> P4["放行"]
-    KEY -- 无 / 不匹配 --> R401["401 application/json<br/>{error:Unauthorized, message:Invalid or missing API key}"]
-```
+[![拦截器链（ApiKeyAuthInterceptor#preHandle）](assets/l02-interceptor.svg)](assets/l02-interceptor.html)
+
+> 🔍 交互版 [assets/l02-interceptor.html](assets/l02-interceptor.html)：沿「预检 → 白名单 → 空放行 → 凭据」主干逐步聚焦，观察每条判定分支的走向（GitHub 网页端仅显示源码，请本地克隆中打开）。
 
 ## 精读路线（vendor 源码）
 
