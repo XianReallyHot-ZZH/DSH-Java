@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1640 700" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase" width="1640" height="700">
+        <title id="archify-diagram-title">L03 阻塞式对话 tracer 链路</title>
+        <desc id="archify-diagram-description">由 Archify 生成的时序图。</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Time Segments -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="0" x="48" y="150" width="1544" height="120" rx="10" class="c-lane" stroke-width="1"/>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="1" x="48" y="280" width="1544" height="75" rx="10" class="c-lane" stroke-width="1"/>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="2" x="48" y="365" width="1544" height="150" rx="10" class="c-lane" stroke-width="1"/>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="segment" data-composition-frame-id="3" x="48" y="525" width="1544" height="90" rx="10" class="c-lane" stroke-width="1"/>
+
+        <!-- Lifelines -->
+        <path d="M 134 142 L 134 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 308.25 142 L 308.25 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 482.5 142 L 482.5 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 656.75 142 L 656.75 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 831 142 L 831 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 1005.25 142 L 1005.25 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 1179.5 142 L 1179.5 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 1353.75 142 L 1353.75 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+        <path d="M 1528 142 L 1528 635" class="a-default" stroke-width="0.8" stroke-dasharray="3,7"/>
+
+        <!-- Activations -->
+        <rect x="303.25" y="172" width="10" height="422" rx="3" class="c-mask"/>
+        <rect x="303.25" y="172" width="10" height="422" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="477.5" y="196" width="10" height="400" rx="3" class="c-mask"/>
+        <rect x="477.5" y="196" width="10" height="400" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="651.75" y="224" width="10" height="340" rx="3" class="c-mask"/>
+        <rect x="651.75" y="224" width="10" height="340" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="826" y="252" width="10" height="304" rx="3" class="c-mask"/>
+        <rect x="826" y="252" width="10" height="304" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="1000.25" y="290" width="10" height="224" rx="3" class="c-mask"/>
+        <rect x="1000.25" y="290" width="10" height="224" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="1174.5" y="336" width="10" height="146" rx="3" class="c-mask"/>
+        <rect x="1174.5" y="336" width="10" height="146" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="1348.75" y="360" width="10" height="114" rx="3" class="c-mask"/>
+        <rect x="1348.75" y="360" width="10" height="114" rx="3" class="c-backend" stroke-width="1"/>
+        <rect x="1523" y="398" width="10" height="52" rx="3" class="c-mask"/>
+        <rect x="1523" y="398" width="10" height="52" rx="3" class="c-cloud" stroke-width="1"/>
+
+        <!-- Messages -->
+        <g data-edge-from="client" data-edge-to="controller" data-edge-label="POST /api/agent/message" data-edge-key="0" data-edge-id="http-post">
+          <path data-composition-edge-from="client" data-composition-edge-to="controller" data-composition-edge-id="http-post" data-composition-points="141,170;301.25,170" d="M 141 170 L 301.25 170" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <g data-detail="context">
+          <rect x="155.325" y="150" width="131.60000000000002" height="16" rx="3" class="c-mask"/>
+          <text x="221.125" y="160" class="t-backend" font-size="9" text-anchor="middle">POST /api/agent/message</text>
+        </g>
+        </g>
+
+        <g data-edge-from="controller" data-edge-to="api" data-edge-label="sendMessage(DTO)" data-edge-key="1" data-edge-id="controller-to-api">
+          <path data-composition-edge-from="controller" data-composition-edge-to="api" data-composition-edge-id="controller-to-api" data-composition-points="315.25,198;475.5,198" d="M 315.25 198 L 475.5 198" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="347.775" y="178" width="95.2" height="16" rx="3" class="c-mask"/>
+          <text x="395.375" y="188" class="t-backend" font-size="9" text-anchor="middle">sendMessage(DTO)</text>
+        </g>
+        </g>
+
+        <g data-edge-from="api" data-edge-to="usecase" data-edge-label="sendMessage(request)" data-edge-key="2" data-edge-id="api-to-usecase">
+          <path data-composition-edge-from="api" data-composition-edge-to="usecase" data-composition-edge-id="api-to-usecase" data-composition-points="489.5,226;649.75,226" d="M 489.5 226 L 649.75 226" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="511.625" y="206" width="116" height="16" rx="3" class="c-mask"/>
+          <text x="569.625" y="216" class="t-backend" font-size="9" text-anchor="middle">sendMessage(request)</text>
+        </g>
+        </g>
+
+        <g data-edge-from="usecase" data-edge-to="pipeline" data-edge-label="pipeline().execute(request)" data-edge-key="3" data-edge-id="usecase-to-pipeline">
+          <path data-composition-edge-from="usecase" data-composition-edge-to="pipeline" data-composition-edge-id="usecase-to-pipeline" data-composition-points="663.75,254;824,254" d="M 663.75 254 L 824 254" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="667.675" y="234" width="152.4" height="16" rx="3" class="c-mask"/>
+          <text x="743.875" y="244" class="t-backend" font-size="9" text-anchor="middle">pipeline().execute(request)</text>
+        </g>
+        </g>
+
+        <g data-edge-from="pipeline" data-edge-to="agent" data-edge-label="send(NEXT_TURN, wakeup=true)" data-edge-key="4" data-edge-id="dispatch-send">
+          <path data-composition-edge-from="pipeline" data-composition-edge-to="agent" data-composition-edge-id="dispatch-send" data-composition-points="838,295;998.25,295" d="M 838 295 L 998.25 295" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="839.325" y="275" width="157.6" height="16" rx="3" class="c-mask"/>
+          <text x="918.125" y="285" class="t-backend" font-size="9" text-anchor="middle">send(NEXT_TURN, wakeup=true)</text>
+        </g>
+        <text data-detail="fine" x="850" y="313" class="t-dim" font-size="7">Resolve：命中 liveAgents 复用，否则 AgentRunFactory.create 新建单回合内存会话；Dispatch：构造用户消息投递收件箱。</text>
+        </g>
+
+        <g data-edge-from="agent" data-edge-to="port" data-edge-label="stream(GenerateOptions)" data-edge-key="5" data-edge-id="stream-call">
+          <path data-composition-edge-from="agent" data-composition-edge-to="port" data-composition-edge-id="stream-call" data-composition-points="1012.25,335;1172.5,335" d="M 1012.25 335 L 1172.5 335" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="1026.575" y="315" width="131.60000000000002" height="16" rx="3" class="c-mask"/>
+          <text x="1092.375" y="325" class="t-backend" font-size="9" text-anchor="middle">stream(GenerateOptions)</text>
+        </g>
+        <text data-detail="fine" x="1024.25" y="353" class="t-dim" font-size="7">驱动循环 send→wakeDriver→kick→turn→step；流式在 step 内部阻塞消费为完整回合结果。</text>
+        </g>
+
+        <g data-edge-from="port" data-edge-to="adapter" data-edge-label="按 provider 路由（deepseek）" data-edge-key="6" data-edge-id="route-adapter">
+          <path data-composition-edge-from="port" data-composition-edge-to="adapter" data-composition-edge-id="route-adapter" data-composition-points="1186.5,374;1346.75,374" d="M 1186.5 374 L 1346.75 374" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="1187.825" y="354" width="157.6" height="16" rx="3" class="c-mask"/>
+          <text x="1266.625" y="364" class="t-backend" font-size="9" text-anchor="middle">按 provider 路由（deepseek）</text>
+        </g>
+        </g>
+
+        <g data-edge-from="adapter" data-edge-to="upstream" data-edge-label="POST /chat/completions（SSE）" data-edge-key="7" data-edge-id="sse-post">
+          <path data-composition-edge-from="adapter" data-composition-edge-to="upstream" data-composition-edge-id="sse-post" data-composition-points="1360.75,404;1521,404" d="M 1360.75 404 L 1521 404" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <g data-detail="context">
+          <rect x="1359.475" y="384" width="162.8" height="16" rx="3" class="c-mask"/>
+          <text x="1440.875" y="394" class="t-backend" font-size="9" text-anchor="middle">POST /chat/completions（SSE）</text>
+        </g>
+        <text data-detail="fine" x="1372.75" y="422" class="t-dim" font-size="7">Bearer 授权 + x-deepseek-harness-session-id 会话对账头。</text>
+        </g>
+
+        <g data-edge-from="upstream" data-edge-to="adapter" data-edge-label="data: 分片 … [DONE]" data-edge-key="8" data-edge-id="sse-chunks">
+          <path data-composition-edge-from="upstream" data-composition-edge-to="adapter" data-composition-edge-id="sse-chunks" data-composition-points="1521,442;1360.75,442" d="M 1521 442 L 1360.75 442" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="1385.475" y="422" width="110.8" height="16" rx="3" class="c-mask"/>
+          <text x="1440.875" y="432" class="t-muted" font-size="9" text-anchor="middle">data: 分片 … [DONE]</text>
+        </g>
+        </g>
+
+        <g data-edge-from="adapter" data-edge-to="agent" data-edge-label="StreamChunk：BlockStart→TextDelta→…→Finish" data-edge-key="9" data-edge-id="stream-chunks">
+          <path data-composition-edge-from="adapter" data-composition-edge-to="agent" data-composition-edge-id="stream-chunks" data-composition-points="1346.75,472;1012.25,472" d="M 1346.75 472 L 1012.25 472" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="1064.3" y="452" width="230.4" height="16" rx="3" class="c-mask"/>
+          <text x="1179.5" y="462" class="t-muted" font-size="9" text-anchor="middle">StreamChunk：BlockStart→TextDelta→…→Finish</text>
+        </g>
+        <text data-detail="fine" x="1024.25" y="490" class="t-dim" font-size="7">空流（仅注释行 / 10s 首字节超时）自动降级非流式 stream:false；上游 5xx 收敛为 Error Finish。</text>
+        </g>
+
+        <g data-edge-from="agent" data-edge-to="pipeline" data-edge-label="whenIdle()：回合完成" data-edge-key="10" data-edge-id="when-idle">
+          <path data-composition-edge-from="agent" data-composition-edge-to="pipeline" data-composition-edge-id="when-idle" data-composition-points="998.25,510;838,510" d="M 998.25 510 L 838 510" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="860.125" y="490" width="116" height="16" rx="3" class="c-mask"/>
+          <text x="918.125" y="500" class="t-muted" font-size="9" text-anchor="middle">whenIdle()：回合完成</text>
+        </g>
+        <text data-detail="fine" x="850" y="528" class="t-dim" font-size="7">BlockAssembler 归并分片，user/assistant 落账 SessionLog；上游失败软化为「⚠️ LLM 调用失败」助手消息而非信封错误。</text>
+        </g>
+
+        <g data-edge-from="pipeline" data-edge-to="api" data-edge-label="AgentMessageResponseDTO（6 字段）" data-edge-key="11" data-edge-id="response-dto">
+          <path data-composition-edge-from="pipeline" data-composition-edge-to="api" data-composition-edge-id="response-dto" data-composition-points="824,550;489.5,550" d="M 824 550 L 489.5 550" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="564.95" y="530" width="183.6" height="16" rx="3" class="c-mask"/>
+          <text x="656.75" y="540" class="t-muted" font-size="9" text-anchor="middle">AgentMessageResponseDTO（6 字段）</text>
+        </g>
+        </g>
+
+        <g data-edge-from="api" data-edge-to="client" data-edge-label="Response 信封 00000" data-edge-key="12" data-edge-id="envelope">
+          <path data-composition-edge-from="api" data-composition-edge-to="client" data-composition-edge-id="envelope" data-composition-points="475.5,590;141,590" d="M 475.5 590 L 141 590" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+        <g data-detail="context">
+          <rect x="252.85" y="570" width="110.8" height="16" rx="3" class="c-mask"/>
+          <text x="308.25" y="580" class="t-muted" font-size="9" text-anchor="middle">Response 信封 00000</text>
+        </g>
+        </g>
+
+        <!-- Segment Labels -->
+        <g data-graph-role="segment-label" data-segment-id="0">
+          <rect x="56" y="128" width="55.6" height="18" rx="3" class="c-mask"/>
+          <text x="62" y="141" class="t-dim" font-size="9" font-weight="600">入口转发</text>
+        </g>
+        <g data-graph-role="segment-label" data-segment-id="1">
+          <rect x="56" y="258" width="66" height="18" rx="3" class="c-mask"/>
+          <text x="62" y="271" class="t-dim" font-size="9" font-weight="600">策略树编排</text>
+        </g>
+        <g data-graph-role="segment-label" data-segment-id="2">
+          <rect x="56" y="343" width="55.6" height="18" rx="3" class="c-mask"/>
+          <text x="62" y="356" class="t-dim" font-size="9" font-weight="600">LLM 往返</text>
+        </g>
+        <g data-graph-role="segment-label" data-segment-id="3">
+          <rect x="56" y="503" width="66" height="18" rx="3" class="c-mask"/>
+          <text x="62" y="516" class="t-dim" font-size="9" font-weight="600">收集与响应</text>
+        </g>
+
+        <!-- Participants -->
+        <g id="node-client" data-node-id="client" data-node-label="客户端" tabindex="0" role="button" aria-label="聚焦客户端，时序参与者" aria-pressed="false" data-node-kind="external" data-node-context="时序参与者">
+          <title>客户端 · 时序参与者</title>
+          <rect x="62" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="62" y="72" width="144" height="54" rx="6" class="c-external" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(68 78) scale(0.6875)">
+            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
+            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
+          </g>
+          <text data-node-label="" x="134" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">客户端</text>
+        </g>
+
+        <g id="node-controller" data-node-id="controller" data-node-label="AgentController" tabindex="0" role="button" aria-label="聚焦AgentController，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>AgentController · 时序参与者</title>
+          <rect x="236.25" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="236.25" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(242.25 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="308.25" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AgentController</text>
+        </g>
+
+        <g id="node-api" data-node-id="api" data-node-label="AgentApi" tabindex="0" role="button" aria-label="聚焦AgentApi，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>AgentApi · 时序参与者</title>
+          <rect x="410.5" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="410.5" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(416.5 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="482.5" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AgentApi</text>
+        </g>
+
+        <g id="node-usecase" data-node-id="usecase" data-node-label="AgentUseCase" tabindex="0" role="button" aria-label="聚焦AgentUseCase，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>AgentUseCase · 时序参与者</title>
+          <rect x="584.75" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="584.75" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(590.75 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="656.75" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AgentUseCase</text>
+        </g>
+
+        <g id="node-pipeline" data-node-id="pipeline" data-node-label="策略树" tabindex="0" role="button" aria-label="聚焦策略树，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>策略树 · 时序参与者</title>
+          <rect x="759" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="759" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(765 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="831" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">策略树</text>
+        </g>
+
+        <g id="node-agent" data-node-id="agent" data-node-label="ReactLoopAgent" tabindex="0" role="button" aria-label="聚焦ReactLoopAgent，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>ReactLoopAgent · 时序参与者</title>
+          <rect x="933.25" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="933.25" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(939.25 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="1005.25" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ReactLoopAgent</text>
+        </g>
+
+        <g id="node-port" data-node-id="port" data-node-label="ILlmRuntimePort" tabindex="0" role="button" aria-label="聚焦ILlmRuntimePort，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>ILlmRuntimePort · 时序参与者</title>
+          <rect x="1107.5" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="1107.5" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(1113.5 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="1179.5" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">ILlmRuntimePort</text>
+        </g>
+
+        <g id="node-adapter" data-node-id="adapter" data-node-label="DeepSeekAdapter" tabindex="0" role="button" aria-label="聚焦DeepSeekAdapter，时序参与者" aria-pressed="false" data-node-kind="backend" data-node-context="时序参与者">
+          <title>DeepSeekAdapter · 时序参与者</title>
+          <rect x="1281.75" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="1281.75" y="72" width="144" height="54" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(1287.75 78) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" x="1353.75" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">DeepSeekAdapter</text>
+        </g>
+
+        <g id="node-upstream" data-node-id="upstream" data-node-label="DeepSeek 上游" tabindex="0" role="button" aria-label="聚焦DeepSeek 上游，时序参与者" aria-pressed="false" data-node-kind="cloud" data-node-context="时序参与者">
+          <title>DeepSeek 上游 · 时序参与者</title>
+          <rect x="1456" y="72" width="144" height="54" rx="6" class="c-mask"/>
+          <rect x="1456" y="72" width="144" height="54" rx="6" class="c-cloud" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(1462 78) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" x="1528" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">DeepSeek 上游</text>
+        </g>
+
+        <!-- Legend -->
+        <g data-legend="">
+          <text x="40" y="626" class="t-primary" font-size="12" font-weight="650">图例</text>
+          <g data-legend-semantic-kind="emphasis" data-legend-x="40" data-legend-baseline="646" data-legend-width="63">
+            <path d="M 40 643 L 74 643" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+            <text x="83" y="646" class="t-muted" font-size="10" font-weight="500">请求</text>
+          </g>
+          <g data-legend-semantic-kind="return" data-legend-x="125" data-legend-baseline="646" data-legend-width="63">
+            <path d="M 125 643 L 159 643" class="a-default" stroke-width="1.4" stroke-dasharray="3,5" marker-end="url(#arrowhead)"/>
+            <text x="168" y="646" class="t-muted" font-size="10" font-weight="500">返回</text>
+          </g>
+          <g data-legend-semantic-kind="default" data-legend-x="210" data-legend-baseline="646" data-legend-width="83">
+            <path d="M 210 643 L 244 643" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+            <text x="253" y="646" class="t-muted" font-size="10" font-weight="500">默认消息</text>
+          </g>
+        </g>
+      </svg>
