@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="566" viewBox="0 0 1080 566" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">L04 Phase 三态状态机（ReactLoopAgent）</title>
+        <desc id="archify-diagram-description">由 Archify 生成的生命周期图。</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Lifecycle bands -->
+        <path d="M 72 112 L 1008 112" class="a-default" stroke-width="0.8" stroke-dasharray="3,8"/>
+        <text x="72" y="100" class="t-dim" font-size="10" font-weight="600">01 / 对话相位</text>
+        <path d="M 72 264 L 1008 264" class="a-default" stroke-width="0.8" stroke-dasharray="3,8"/>
+        <text x="72" y="252" class="t-dim" font-size="10" font-weight="600">02 / 维护相位 + 中断信号</text>
+        <path d="M 72 436 L 1008 436" class="a-default" stroke-width="0.8" stroke-dasharray="3,8"/>
+        <text x="72" y="424" class="t-dim" font-size="10" font-weight="600">03 / Outcomes</text>
+
+        <!-- Primary lifecycle rail -->
+        <path d="M 154 157 L 440 157" class="a-emphasis" stroke-width="2.2" marker-end="url(#arrowhead-emphasis)"/>
+
+        <!-- Transition paths -->
+        <path data-edge-from="idle" data-edge-to="running" data-edge-label="send 唤醒 → kick" data-edge-key="0" data-edge-id="wake-kick" data-composition-points="153,157;343,157" d="M 153 157 L 343 157" class="a-emphasis" stroke-width="2" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="running" data-edge-to="idle" data-edge-label="kick 收尾 → Idle" data-edge-key="1" data-edge-id="finish-idle" data-composition-points="343,157;343,98;153,98;153,157" d="M 343 157 L 343 108 Q 343 98 333 98 L 163 98 Q 153 98 153 108 L 153 157" class="a-default" stroke-width="1.1" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="abortStop" data-edge-to="running" data-edge-label="abort.set(true)" data-edge-key="2" data-edge-id="cancel-marks-abort" data-composition-points="647,307;554,307;554,157;461,157" d="M 647 307 L 564 307 Q 554 307 554 297 L 554 167 Q 554 157 544 157 L 461 157" class="a-security" stroke-width="1.1" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="idle" data-edge-to="maintenance" data-edge-label="runMaintenance(task)" data-edge-key="3" data-edge-id="enter-maintenance" data-composition-points="94,188;94,233;402,233;402,278" d="M 94 188 L 94 223 Q 94 233 104 233 L 392 233 Q 402 233 402 243 L 402 278" class="a-default" stroke-width="1.1" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="maintenance" data-edge-to="idle" data-edge-key="4" data-edge-id="leave-maintenance" data-composition-points="339,307;246,307;246,157;153,157" d="M 339 307 L 256 307 Q 246 307 246 297 L 246 167 Q 246 157 236 157 L 153 157" class="a-default" stroke-width="1.1" marker-end="url(#arrowhead)"/>
+
+        <!-- States -->
+        <g id="node-idle" data-node-id="idle" data-node-label="Idle" tabindex="0" role="button" aria-label="聚焦Idle，空闲 · 记录 lastTurn, 对话相位" aria-pressed="false" data-node-kind="start" data-node-sublabel="空闲 · 记录 lastTurn" data-node-tag="相位" data-node-context="对话相位">
+          <title>Idle · 空闲 · 记录 lastTurn · 对话相位 · 相位</title>
+          <rect x="35" y="126" width="118" height="62" rx="7" class="c-mask"/>
+          <rect x="35" y="126" width="118" height="62" rx="7" class="c-frontend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="start" class="semantic-sigil s-frontend" transform="translate(136 132) scale(0.6875)">
+            <circle cx="8" cy="8" r="5"/>
+            <path d="m7 5.4 3.6 2.6L7 10.6Z" class="sigil-fill"/>
+          </g>
+        <text data-detail="fine" x="45" y="140" class="t-frontend" font-size="7" font-weight="700">01</text>
+          <text data-node-label="" data-detail-anchor="" x="94" y="147" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Idle</text>
+          <text data-detail="context" x="94" y="163" class="t-muted" font-size="7" text-anchor="middle">空闲 · 记录 lastTurn</text>
+        <text data-detail="fine" x="94" y="177" class="t-frontend" font-size="7" text-anchor="middle">相位</text>
+        </g>
+
+        <g id="node-running" data-node-id="running" data-node-label="Running" tabindex="0" role="button" aria-label="聚焦Running，驱动器推进 turn / step, 对话相位" aria-pressed="false" data-node-kind="active" data-node-sublabel="驱动器推进 turn / step" data-node-tag="相位" data-node-context="对话相位">
+          <title>Running · 驱动器推进 turn / step · 对话相位 · 相位</title>
+          <rect x="343" y="126" width="118" height="62" rx="7" class="c-mask"/>
+          <rect x="343" y="126" width="118" height="62" rx="7" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="active" class="semantic-sigil s-backend" transform="translate(444 132) scale(0.6875)">
+            <path d="M2 8h3l1.5-3.5L9 12l1.6-4H14"/>
+          </g>
+        <text data-detail="fine" x="353" y="140" class="t-backend" font-size="7" font-weight="700">02</text>
+          <text data-node-label="" data-detail-anchor="" x="402" y="147" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Running</text>
+          <text data-detail="context" x="402" y="163" class="t-muted" font-size="7" text-anchor="middle">驱动器推进 turn / step</text>
+        <text data-detail="fine" x="402" y="177" class="t-backend" font-size="7" text-anchor="middle">相位</text>
+        </g>
+
+        <g id="node-maintenance" data-node-id="maintenance" data-node-label="Maintenance" tabindex="0" role="button" aria-label="聚焦Maintenance，压缩 / 重建等维护任务, 维护相位" aria-pressed="false" data-node-kind="waiting" data-node-sublabel="压缩 / 重建等维护任务" data-node-tag="相位" data-node-context="维护相位">
+          <title>Maintenance · 压缩 / 重建等维护任务 · 维护相位 · 相位</title>
+          <rect x="339" y="278" width="126" height="58" rx="7" class="c-mask"/>
+          <rect x="339" y="278" width="126" height="58" rx="7" class="c-cloud" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="waiting" class="semantic-sigil s-cloud" transform="translate(448 284) scale(0.6875)">
+            <path d="M4 2.5h8M4 13.5h8M5 3c0 2.8 2 3.2 3 5-1 1.8-3 2.2-3 5M11 3c0 2.8-2 3.2-3 5 1 1.8 3 2.2 3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="402" y="299" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">Maintenance</text>
+          <text data-detail="context" x="402" y="315" class="t-muted" font-size="7" text-anchor="middle">压缩 / 重建等维护任务</text>
+        <text data-detail="fine" x="402" y="325" class="t-cloud" font-size="7" text-anchor="middle">相位</text>
+        </g>
+
+        <g id="node-abortStop" data-node-id="abortStop" data-node-label="cancel 请求" tabindex="0" role="button" aria-label="聚焦cancel 请求，只设 abort 标记, 中断信号" aria-pressed="false" data-node-kind="failure" data-node-sublabel="只设 abort 标记" data-node-tag="中断" data-node-context="中断信号">
+          <title>cancel 请求 · 只设 abort 标记 · 中断信号 · 中断</title>
+          <rect x="647" y="278" width="126" height="58" rx="7" class="c-mask"/>
+          <rect x="647" y="278" width="126" height="58" rx="7" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="failure" class="semantic-sigil s-security" transform="translate(756 284) scale(0.6875)">
+            <circle cx="8" cy="8" r="5.3"/>
+            <path d="m5.7 5.7 4.6 4.6m0-4.6-4.6 4.6"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="710" y="299" class="t-primary" font-size="10" font-weight="600" text-anchor="middle">cancel 请求</text>
+          <text data-detail="context" x="710" y="315" class="t-muted" font-size="7" text-anchor="middle">只设 abort 标记</text>
+        <text data-detail="fine" x="710" y="325" class="t-security" font-size="7" text-anchor="middle">中断</text>
+        </g>
+
+        <!-- Transition labels -->
+        <g data-detail="context" data-edge-from="idle" data-edge-to="running" data-edge-label="send 唤醒 → kick" data-edge-key="0" data-edge-id="wake-kick">
+          <rect x="202.8" y="136" width="90.4" height="16" rx="4" class="c-mask"/>
+          <text x="248" y="147" class="t-backend" font-size="8" text-anchor="middle">send 唤醒 → kick</text>
+        </g>
+        <g data-detail="context" data-edge-from="running" data-edge-to="idle" data-edge-label="kick 收尾 → Idle" data-edge-key="1" data-edge-id="finish-idle">
+          <rect x="202.8" y="77" width="90.4" height="16" rx="4" class="c-mask"/>
+          <text x="248" y="88" class="t-muted" font-size="8" text-anchor="middle">kick 收尾 → Idle</text>
+        </g>
+        <g data-detail="context" data-edge-from="abortStop" data-edge-to="running" data-edge-label="abort.set(true)" data-edge-key="2" data-edge-id="cancel-marks-abort">
+          <rect x="511.25" y="211" width="85.5" height="16" rx="4" class="c-mask"/>
+          <text x="554" y="222" class="t-security" font-size="8" text-anchor="middle">abort.set(true)</text>
+        </g>
+        <g data-detail="context" data-edge-from="idle" data-edge-to="maintenance" data-edge-label="runMaintenance(task)" data-edge-key="3" data-edge-id="enter-maintenance">
+          <rect x="93" y="237" width="110" height="16" rx="4" class="c-mask"/>
+          <text x="148" y="248" class="t-muted" font-size="8" text-anchor="middle">runMaintenance(task)</text>
+        </g>
+
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="40" y="510" class="t-primary" font-size="12" font-weight="650">图例</text>
+          <g data-legend-semantic-kind="start" data-legend-kind="start" data-legend-label="开始" data-legend-x="40" data-legend-baseline="530" data-legend-width="63">
+            <rect x="40" y="522" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
+            <text x="62" y="530" class="t-muted" font-size="10" font-weight="500">开始</text>
+          </g>
+          <g data-legend-semantic-kind="active" data-legend-kind="active" data-legend-label="活动状态" data-legend-x="125" data-legend-baseline="530" data-legend-width="83">
+            <rect x="125" y="522" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
+            <text x="147" y="530" class="t-muted" font-size="10" font-weight="500">活动状态</text>
+          </g>
+          <g data-legend-semantic-kind="waiting" data-legend-kind="waiting" data-legend-label="等待" data-legend-x="230" data-legend-baseline="530" data-legend-width="63">
+            <rect x="230" y="522" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="252" y="530" class="t-muted" font-size="10" font-weight="500">等待</text>
+          </g>
+          <g data-legend-semantic-kind="failure" data-legend-kind="failure" data-legend-label="失败 / 退出" data-legend-x="315" data-legend-baseline="530" data-legend-width="98">
+            <rect x="315" y="522" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="337" y="530" class="t-muted" font-size="10" font-weight="500">失败 / 退出</text>
+          </g>
+        </g>
+      </svg>

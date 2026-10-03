@@ -10,51 +10,13 @@
 
 ## 配图
 
-### Phase 状态机（三态与中断/唤醒补偿）
+[![L04 Phase 三态状态机](assets/l04-phase-lifecycle.svg)](assets/l04-phase-lifecycle.html)
 
-```mermaid
-stateDiagram-v2
-    [*] --> Idle : 构造（lastTurn=0）
+> 🔍 交互版 [assets/l04-phase-lifecycle.html](assets/l04-phase-lifecycle.html)：点击相位/中断节点聚焦、追踪转移边，切换明暗主题与「对话主循环 / 取消与唤醒补偿 / 维护相位」章节视图（GitHub 网页端仅显示源码，请本地克隆中打开）。
 
-    Idle --> Running : send(wakeup=true) 且收件箱有待处理<br/>wakeDriver → kick
-    Running --> Running : turn++ / step++<br/>（重建 Phase.Running，共享 abort/wakeRequested）
-    Running --> Idle : kick 收尾（turnCount 落账）
-    Idle --> Idle : wakeDriver 且收件箱空 → 不动作
+[![L04 turn→step 与事件落账结构](assets/l04-turn-steps.svg)](assets/l04-turn-steps.html)
 
-    Running --> Running : 中断：cancel → abort.set(true)<br/>流式安全点停止 → turn/end(Aborted)
-    Running --> Running : 运行中来消息：wakeRequested.set(true)<br/>（kick 收尾时若非 abort 且仍有待处理 → 递归重入）
-    note right of Running : 中止收尾时唤醒补偿被丢弃<br/>（vendor 语义，测试钉住）：<br/>abort=true 则不重入，消息等下一次唤醒
-
-    Idle --> Maintenance : runMaintenance(task)<br/>（非 Idle 抛 IllegalStateException）
-    Maintenance --> Idle : 任务完成（无论成败）
-    Maintenance --> Maintenance : 维护中来消息：wakeRequested.set(true)
-    Maintenance --> Idle : 完成后 wakeRequested 且有待处理 → wakeDriver 续驱动
-```
-
-### turn → step 结构图（事件在每一层落账）
-
-```mermaid
-flowchart TD
-    subgraph kick["kick（驱动循环，直到收件箱空）"]
-        K{abort? 或<br/>收件箱空?} -->|否| T
-        K -->|是| X["phase → Idle<br/>（abort 时丢弃唤醒补偿）"]
-        T["turn()：turn/start 事件"] --> S1
-        subgraph turn["单个回合（≤50 步）"]
-            S1{"第一步？<br/>（非续步）"} -->|是| CL["claim：全部 next-step<br/>+ 最早 1 条 next-turn<br/>（各记 inbox/spliced 事件）"]
-            S1 -->|否| SS["续步：跳过抢占<br/>（工具结果等模型再看，L06）"]
-            CL --> SS2["step/start 事件<br/>用户消息 → user/message 事件"]
-            SS --> SS2
-            SS2 --> ST["step()：首步记 request/header<br/>+ request/context；流式分片攒批<br/>→ assistant/chunk×N；结束<br/>→ assistant/message 事件"]
-            ST --> SE["step/end 事件"]
-            SE --> R{step 结果}
-            R -->|null 续步| S1
-            R -->|Completed| TE1["turn/end(Completed)<br/>→ 继续下一回合"]
-            R -->|MaxTokens| TE2["turn/end(MaxTokens)<br/>（L04 直接结束；<br/>≤4 次受控续写是 L08）"]
-            R -->|Aborted/Error/Blocked| TE3["turn/end(原因) → 停止循环"]
-        end
-        TE1 --> K
-    end
-```
+> 🔍 交互版 [assets/l04-turn-steps.html](assets/l04-turn-steps.html)：沿「驱动主循环 / 事件账本 / 收尾与续步」三段导读逐层聚焦，点虚线边可追踪每层动作对应落账的事件（GitHub 网页端仅显示源码，请本地克隆中打开）。
 
 ## 精读路线（vendor 源码）
 

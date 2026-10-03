@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1120" height="560" viewBox="0 0 1120 560" role="img" lang="zh-CN" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">L04 turn→step 与事件落账结构</title>
+        <desc id="archify-diagram-description">由 Archify 生成的工作流图。</desc>
+        <!-- Definitions -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-default" />
+          </marker>
+          <marker id="arrowhead-emphasis" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-emphasis" />
+          </marker>
+          <marker id="arrowhead-security" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-security" />
+          </marker>
+          <marker id="arrowhead-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" class="m-dashed" />
+          </marker>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" class="c-grid" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+
+        <!-- Background Grid -->
+        <rect width="100%" height="100%" fill="url(#grid)" />
+
+        <!-- Swimlanes -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="1039" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-dim" font-size="10" font-weight="600">01 / 驱动循环 kick</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="178" width="1039" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="200" class="t-dim" font-size="10" font-weight="600">02 / 回合 turn（≤50 步）</text>
+
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="304" width="1039" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="326" class="t-dim" font-size="10" font-weight="600">03 / 事件账本 SessionLog</text>
+
+        <!-- Phase headers -->
+        <line x1="121.60000000000002" y1="35" x2="333.6" y2="35" class="a-default" stroke-width="1.1"/>
+        <rect x="121.60000000000002" y="27" width="212" height="16" rx="4" class="c-mask"/>
+        <text x="227.60000000000002" y="39" class="t-muted" font-size="8" font-weight="600" text-anchor="middle">打开回合</text>
+        <line x1="414.6" y1="35" x2="679.6" y2="35" class="a-emphasis" stroke-width="1.1"/>
+        <rect x="414.6" y="27" width="265" height="16" rx="4" class="c-mask"/>
+        <text x="547.1" y="39" class="t-backend" font-size="8" font-weight="600" text-anchor="middle">抢占与执行</text>
+        <line x1="755.5999999999999" y1="35" x2="1048" y2="35" class="a-dashed" stroke-width="1.1"/>
+        <rect x="755.5999999999999" y="27" width="292.4" height="16" rx="4" class="c-mask"/>
+        <text x="901.8" y="39" class="t-messagebus" font-size="8" font-weight="600" text-anchor="middle">分派与收尾</text>
+
+        <!-- Workflow groups -->
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="group" data-composition-frame-id="group-0" x="381.6" y="216" width="470" height="64" rx="9" class="c-lane" stroke-width="1"/>
+        <text x="391.6" y="214" class="t-backend" font-size="7" font-weight="600">步循环（null → 续步）</text>
+
+        <!-- Edge paths -->
+        <path data-edge-from="claim" data-edge-to="step" data-edge-key="0" data-edge-id="e-claim-step" data-composition-points="535.6,246;563.6,246" d="M 535.6 246 L 563.6 246" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="dispatch" data-edge-to="idle" data-edge-label="循环终止" data-edge-key="1" data-edge-id="e-dispatch-idle" data-composition-points="876.6,120;933,120" d="M 876.6 120 L 933 120" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="dispatch" data-edge-to="kick" data-edge-label="Completed → 下一回合" data-edge-key="2" data-edge-id="e-dispatch-kick" data-composition-points="801.6,146;801.6,174;167.60000000000002,174;167.60000000000002,154" d="M 801.6 146 L 801.6 174 L 167.60000000000002 174 L 167.60000000000002 154" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="dispatch" data-edge-to="step" data-edge-label="null → 续步" data-edge-key="3" data-edge-id="e-dispatch-step" data-composition-points="794.6,146;794.6,246;703.6,246" d="M 794.6 146 L 794.6 246 L 703.6 246" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="kick" data-edge-to="idle" data-edge-label="abort / 收件箱空" data-edge-key="4" data-edge-id="e-kick-idle" data-composition-points="167.60000000000002,86;167.60000000000002,70;1002,70;1002,86" d="M 167.60000000000002 86 L 167.60000000000002 70 L 1002 70 L 1002 86" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="kick" data-edge-to="openTurn" data-edge-label="有待处理" data-edge-key="5" data-edge-id="e-kick-turn" data-composition-points="236.60000000000002,120;287.6,120;287.6,220" d="M 236.60000000000002 120 L 287.6 120 L 287.6 220" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="openTurn" data-edge-to="evBoundary" data-edge-key="6" data-edge-id="e-ledger-boundary" data-composition-points="287.6,272;287.6,346" d="M 287.6 272 L 287.6 346" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="dispatch" data-edge-to="evClose" data-edge-key="7" data-edge-id="e-ledger-close" data-composition-points="808.6,146;808.6,162;1091,162;1091,330;801.6,330;801.6,346" d="M 808.6 146 L 808.6 162 L 1091 162 L 1091 330 L 801.6 330 L 801.6 346" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="claim" data-edge-to="evInbox" data-edge-key="8" data-edge-id="e-ledger-inbox" data-composition-points="460.6,272;460.6,346" d="M 460.6 272 L 460.6 346" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="step" data-edge-to="evSurface" data-edge-key="9" data-edge-id="e-ledger-surface" data-composition-points="633.6,272;633.6,346" d="M 633.6 272 L 633.6 346" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="step" data-edge-to="dispatch" data-edge-key="10" data-edge-id="e-step-dispatch" data-composition-points="633.6,220;633.6,127;726.6,127" d="M 633.6 220 L 633.6 127 L 726.6 127" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="openTurn" data-edge-to="claim" data-edge-key="11" data-edge-id="e-turn-claim" data-composition-points="357.6,246;385.6,246" d="M 357.6 246 L 385.6 246" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+
+        <!-- Nodes -->
+        <g id="node-kick" data-node-id="kick" data-node-label="kick 循环" tabindex="0" role="button" aria-label="聚焦kick 循环，abort? 收件箱空?, 驱动循环 kick › 打开回合" aria-pressed="false" data-node-kind="backend" data-node-sublabel="abort? 收件箱空?" data-node-tag="驱动" data-node-context="驱动循环 kick › 打开回合">
+          <title>kick 循环 · abort? 收件箱空? · 驱动循环 kick › 打开回合 · 驱动</title>
+          <rect x="98.60000000000002" y="86" width="138" height="68" rx="6" class="c-mask"/>
+          <rect x="98.60000000000002" y="86" width="138" height="68" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(104.60000000000002 92) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="167.60000000000002" y="107" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">kick 循环</text>
+          <text data-detail="context" x="167.60000000000002" y="124" class="t-muted" font-size="8" text-anchor="middle">abort? 收件箱空?</text>
+        <text data-detail="fine" x="167.60000000000002" y="142" class="t-backend" font-size="7" text-anchor="middle">驱动</text>
+        </g>
+
+        <g id="node-dispatch" data-node-id="dispatch" data-node-label="step 结果分派" tabindex="0" role="button" aria-label="聚焦step 结果分派，null / Completed / 其他终止, 驱动循环 kick › 分派与收尾" aria-pressed="false" data-node-kind="backend" data-node-sublabel="null / Completed / 其他终止" data-node-context="驱动循环 kick › 分派与收尾">
+          <title>step 结果分派 · null / Completed / 其他终止 · 驱动循环 kick › 分派与收尾</title>
+          <rect x="726.6" y="94" width="150" height="52" rx="6" class="c-mask"/>
+          <rect x="726.6" y="94" width="150" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(732.6 100) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="801.6" y="115" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">step 结果分派</text>
+          <text data-detail="context" x="801.6" y="132" class="t-muted" font-size="8" text-anchor="middle">null / Completed / 其他终止</text>
+        </g>
+
+        <g id="node-idle" data-node-id="idle" data-node-label="phase → Idle" tabindex="0" role="button" aria-label="聚焦phase → Idle，中止丢弃唤醒补偿, 驱动循环 kick › 分派与收尾" aria-pressed="false" data-node-kind="backend" data-node-sublabel="中止丢弃唤醒补偿" data-node-tag="收尾" data-node-context="驱动循环 kick › 分派与收尾">
+          <title>phase → Idle · 中止丢弃唤醒补偿 · 驱动循环 kick › 分派与收尾 · 收尾</title>
+          <rect x="933" y="86" width="138" height="68" rx="6" class="c-mask"/>
+          <rect x="933" y="86" width="138" height="68" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(939 92) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="1002" y="107" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">phase → Idle</text>
+          <text data-detail="context" x="1002" y="124" class="t-muted" font-size="8" text-anchor="middle">中止丢弃唤醒补偿</text>
+        <text data-detail="fine" x="1002" y="142" class="t-backend" font-size="7" text-anchor="middle">收尾</text>
+        </g>
+
+        <g id="node-openTurn" data-node-id="openTurn" data-node-label="turn() 打开回合" tabindex="0" role="button" aria-label="聚焦turn() 打开回合，turn++ · 首个 step/start, 回合 turn（≤50 步） › 打开回合" aria-pressed="false" data-node-kind="backend" data-node-sublabel="turn++ · 首个 step/start" data-node-context="回合 turn（≤50 步） › 打开回合">
+          <title>turn() 打开回合 · turn++ · 首个 step/start · 回合 turn（≤50 步） › 打开回合</title>
+          <rect x="217.60000000000002" y="220" width="140" height="52" rx="6" class="c-mask"/>
+          <rect x="217.60000000000002" y="220" width="140" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(223.60000000000002 226) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="287.6" y="241" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">turn() 打开回合</text>
+          <text data-detail="context" x="287.6" y="258" class="t-muted" font-size="8" text-anchor="middle">turn++ · 首个 step/start</text>
+        </g>
+
+        <g id="node-claim" data-node-id="claim" data-node-label="claim 抢占" tabindex="0" role="button" aria-label="聚焦claim 抢占，next-step 全取 · next-turn 取一, 回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行" aria-pressed="false" data-node-kind="backend" data-node-sublabel="next-step 全取 · next-turn 取一" data-node-context="回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行">
+          <title>claim 抢占 · next-step 全取 · next-turn 取一 · 回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行</title>
+          <rect x="385.6" y="220" width="150" height="52" rx="6" class="c-mask"/>
+          <rect x="385.6" y="220" width="150" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(391.6 226) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="460.6" y="241" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">claim 抢占</text>
+          <text data-detail="context" x="460.6" y="258" class="t-muted" font-size="7.6" text-anchor="middle">next-step 全取 · next-turn 取一</text>
+        </g>
+
+        <g id="node-step" data-node-id="step" data-node-label="step() 调 LLM" tabindex="0" role="button" aria-label="聚焦step() 调 LLM，首步记请求头 · 分片攒批, 回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行" aria-pressed="false" data-node-kind="backend" data-node-sublabel="首步记请求头 · 分片攒批" data-node-context="回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行">
+          <title>step() 调 LLM · 首步记请求头 · 分片攒批 · 回合 turn（≤50 步） › 步循环（null → 续步） › 抢占与执行</title>
+          <rect x="563.6" y="220" width="140" height="52" rx="6" class="c-mask"/>
+          <rect x="563.6" y="220" width="140" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(569.6 226) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="633.6" y="241" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">step() 调 LLM</text>
+          <text data-detail="context" x="633.6" y="258" class="t-muted" font-size="8" text-anchor="middle">首步记请求头 · 分片攒批</text>
+        </g>
+
+        <g id="node-evBoundary" data-node-id="evBoundary" data-node-label="回合步边界" tabindex="0" role="button" aria-label="聚焦回合步边界，turn/start · step/start, 事件账本 SessionLog › 打开回合" aria-pressed="false" data-node-kind="database" data-node-sublabel="turn/start · step/start" data-node-context="事件账本 SessionLog › 打开回合">
+          <title>回合步边界 · turn/start · step/start · 事件账本 SessionLog › 打开回合</title>
+          <rect x="212.60000000000002" y="346" width="150" height="52" rx="6" class="c-mask"/>
+          <rect x="212.60000000000002" y="346" width="150" height="52" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(218.60000000000002 352) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="287.6" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">回合步边界</text>
+          <text data-detail="context" x="287.6" y="384" class="t-muted" font-size="8" text-anchor="middle">turn/start · step/start</text>
+        </g>
+
+        <g id="node-evInbox" data-node-id="evInbox" data-node-label="inbox/spliced" tabindex="0" role="button" aria-label="聚焦inbox/spliced，投递 · 抢占 · 清空的事实, 事件账本 SessionLog › 抢占与执行" aria-pressed="false" data-node-kind="database" data-node-sublabel="投递 · 抢占 · 清空的事实" data-node-context="事件账本 SessionLog › 抢占与执行">
+          <title>inbox/spliced · 投递 · 抢占 · 清空的事实 · 事件账本 SessionLog › 抢占与执行</title>
+          <rect x="390.6" y="346" width="140" height="52" rx="6" class="c-mask"/>
+          <rect x="390.6" y="346" width="140" height="52" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(396.6 352) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="460.6" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">inbox/spliced</text>
+          <text data-detail="context" x="460.6" y="384" class="t-muted" font-size="8" text-anchor="middle">投递 · 抢占 · 清空的事实</text>
+        </g>
+
+        <g id="node-evSurface" data-node-id="evSurface" data-node-label="表面事件" tabindex="0" role="button" aria-label="聚焦表面事件，user / assistant 消息与分片, 事件账本 SessionLog › 抢占与执行" aria-pressed="false" data-node-kind="database" data-node-sublabel="user / assistant 消息与分片" data-node-context="事件账本 SessionLog › 抢占与执行">
+          <title>表面事件 · user / assistant 消息与分片 · 事件账本 SessionLog › 抢占与执行</title>
+          <rect x="553.6" y="346" width="160" height="52" rx="6" class="c-mask"/>
+          <rect x="553.6" y="346" width="160" height="52" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(559.6 352) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="633.6" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">表面事件</text>
+          <text data-detail="context" x="633.6" y="384" class="t-muted" font-size="8" text-anchor="middle">user / assistant 消息与分片</text>
+        </g>
+
+        <g id="node-evClose" data-node-id="evClose" data-node-label="收尾事件" tabindex="0" role="button" aria-label="聚焦收尾事件，step/end · turn/end, 事件账本 SessionLog › 分派与收尾" aria-pressed="false" data-node-kind="database" data-node-sublabel="step/end · turn/end" data-node-context="事件账本 SessionLog › 分派与收尾">
+          <title>收尾事件 · step/end · turn/end · 事件账本 SessionLog › 分派与收尾</title>
+          <rect x="721.6" y="346" width="160" height="52" rx="6" class="c-mask"/>
+          <rect x="721.6" y="346" width="160" height="52" rx="6" class="c-database" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(727.6 352) scale(0.6875)">
+            <ellipse cx="8" cy="4" rx="5" ry="2"/>
+            <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="801.6" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">收尾事件</text>
+          <text data-detail="context" x="801.6" y="384" class="t-muted" font-size="8" text-anchor="middle">step/end · turn/end</text>
+        </g>
+
+        <!-- Edge labels -->
+
+        <g data-detail="context" data-edge-from="dispatch" data-edge-to="idle" data-edge-label="循环终止" data-edge-key="1" data-edge-id="e-dispatch-idle">
+          <rect x="880.5999999999999" y="100" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="904.8" y="110" class="t-muted" font-size="8" text-anchor="middle">循环终止</text>
+        </g>
+        <g data-detail="context" data-edge-from="dispatch" data-edge-to="kick" data-edge-label="Completed → 下一回合" data-edge-key="2" data-edge-id="e-dispatch-kick">
+          <rect x="431.6" y="154" width="106" height="14" rx="3" class="c-mask"/>
+          <text x="484.6" y="164" class="t-backend" font-size="8" text-anchor="middle">Completed → 下一回合</text>
+        </g>
+        <g data-detail="context" data-edge-from="dispatch" data-edge-to="step" data-edge-label="null → 续步" data-edge-key="3" data-edge-id="e-dispatch-step">
+          <rect x="717.7" y="226" width="62.8" height="14" rx="3" class="c-mask"/>
+          <text x="749.1" y="236" class="t-database" font-size="8" text-anchor="middle">null → 续步</text>
+        </g>
+        <g data-detail="context" data-edge-from="kick" data-edge-to="idle" data-edge-label="abort / 收件箱空" data-edge-key="4" data-edge-id="e-kick-idle">
+          <rect x="541.4" y="50" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="584.8" y="60" class="t-security" font-size="8" text-anchor="middle">abort / 收件箱空</text>
+        </g>
+        <g data-detail="context" data-edge-from="kick" data-edge-to="openTurn" data-edge-label="有待处理" data-edge-key="5" data-edge-id="e-kick-turn">
+          <rect x="237.90000000000003" y="100" width="48.4" height="14" rx="3" class="c-mask"/>
+          <text x="262.1" y="110" class="t-backend" font-size="8" text-anchor="middle">有待处理</text>
+        </g>
+
+
+
+
+
+
+
+        <!-- Legend -->
+        <g data-legend="" data-legend-bridge="">
+          <text x="20" y="434" class="t-primary" font-size="12" font-weight="650">图例</text>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Agent 逻辑" data-legend-x="20" data-legend-baseline="454" data-legend-width="87">
+            <rect x="20" y="446" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
+            <text x="42" y="454" class="t-muted" font-size="7.5" font-weight="500">Agent 逻辑</text>
+          </g>
+          <g data-legend-semantic-kind="database" data-legend-kind="database" data-legend-label="上下文 / 追踪" data-legend-x="114" data-legend-baseline="454" data-legend-width="100">
+            <rect x="114" y="446" width="14" height="9" rx="2" class="c-database" stroke-width="1"/>
+            <text x="136" y="454" class="t-muted" font-size="7.5" font-weight="500">上下文 / 追踪</text>
+          </g>
+        </g>
+      </svg>
