@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * Agent 消息策略树工厂。
  * <p>
  * 根节点固定为 {@link AgentResolveNode}，后续节点由每个节点自己的 getNext 规则连接：
- * Resolve → Dispatch → Collect（Intent 节点随 L04 插入 Resolve 与 Dispatch 之间）。
+ * Resolve → Intent → Dispatch → Collect（L04 四节点成形）。
  * streamingPipeline（携带流式接收器的上下文）随 L05 加入。
  */
 @Service

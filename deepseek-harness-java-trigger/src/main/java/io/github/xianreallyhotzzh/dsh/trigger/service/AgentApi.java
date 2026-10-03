@@ -34,9 +34,31 @@ public class AgentApi implements IAgentApi {
         return execute(() -> agentUseCase.sendMessage(request));
     }
 
+    @Override
+    public Response<String> getAgentStatus(String agentId) {
+        return execute(() -> agentUseCase.getAgentStatus(agentId));
+    }
+
+    @Override
+    public Response<Void> cancelAgent(String agentId) {
+        return executeAction(() -> agentUseCase.cancelAgent(agentId));
+    }
+
     private <T> Response<T> execute(java.util.function.Supplier<T> action) {
         try {
             return Response.success(action.get());
+        } catch (IllegalArgumentException exception) {
+            return Response.invalidArgument(exception.getMessage());
+        } catch (RuntimeException exception) {
+            log.error("[AgentApi] 用例执行失败，收敛为 50000：{}", exception.getMessage(), exception);
+            return Response.internalError(exception.getMessage());
+        }
+    }
+
+    private Response<Void> executeAction(Runnable action) {
+        try {
+            action.run();
+            return Response.success(null);
         } catch (IllegalArgumentException exception) {
             return Response.invalidArgument(exception.getMessage());
         } catch (RuntimeException exception) {
