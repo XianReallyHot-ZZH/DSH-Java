@@ -8,6 +8,7 @@
 - **包名映射**：`cn.xiaofuge.deepseek.harness.*` → `io.github.xianreallyhotzzh.dsh.*`，仅前缀替换，包结构/类名/artifactId 与 vendor 一致；groupId 用 `io.github.xianreallyhotzzh`。
 - **工程形态**：仓库根即 Maven 工程根（根 `pom.xml` + 七模块 + plugins），`docs/`、`vendors/` 与工程共存。
 - **每课产出**：`docs/lessons/L<NN>-<slug>.md` 教学文档（模板见下）+ 代码增量 + 搬运测试 + 契约对拍记录；结束打 tag `L<NN>`，lesson 文档引用 tag 间 diff。
+- **tag 完整性与冻结（2026-10-05 立）**：tag 代表该章节的最终完整态——须在本课**全部收尾（含配图与各类修复）完成后**再打，保证 checkout tag 即得可学习的完整仓库；下一课开工后上一课 tag 即冻结，此后发现的前章遗留问题不回移 tag，作为跨课修复记入当前章节区间并在其 lesson 文档注明（L04 的 tag 曾据此由 557725c 前移至 6e72e28，L03 的 svg 渲染修复即属跨课修复）。
 - **完成定义（DoD）分层**：所有课 = 编译启动 ✓ + 新搬测试与全量回归绿 ✓；标注 **[对拍]** 的课另需契约级逐项对齐（REST 路由与响应信封 / SSE 帧序列 / schema.sql / 会话事件形态 / JSON-RPC）。
 - **验收环境**：手工验收用真实 DeepSeek 端点（环境变量 `LLM_BASE_URL` / `LLM_API_KEY` / `LLM_DEFAULT_MODEL`，L03 首次需要）；自动化测试一律用脚本化 fake，不外呼。
 - **以代码为准**：vendor README 与代码不一致处（如审批 gate「默认未启用」的说法已过时，实为默认启用）照代码复刻，并在 lesson 文档标注为教学点。
